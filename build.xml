@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="idm-gsv" default="build" basedir=".">
+  <!-- Arguments to gwtc and devmode targets -->
+  <property name="gwt.args" value="" />
+
+  <!-- Configure path to GWT SDK -->
+  <property name="gwt.sdk" location="/home/lmeyer/.eclipse/org.eclipse.platform_3.7.0_155965261/plugins/com.google.gwt.eclipse.sdkbundle_2.4.0.v201205091048-rel-r37/gwt-2.4.0" />
+   <property name="classes" value="war/WEB-INF/classes"/>
+
+  <path id="project.class.path">
+    <pathelement location="war/WEB-INF/classes"/>
+    <pathelement location="${gwt.sdk}/gwt-user.jar"/>
+    <fileset dir="${gwt.sdk}" includes="gwt-dev*.jar"/>
+    <!-- Add any additional non-server libs (such as JUnit) -->
+    <fileset dir="war/WEB-INF/lib" includes="**/*.jar"/>
+  </path>
+
+   <path id="compile_classpath">
+        <pathelement location="${classes}"/>
+        <fileset dir="lib">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+  <path id="build_classpath">
+        <path refid="compile_classpath"/>
+        <fileset dir="build_time_libs">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+  <target name="libs" description="Copy libs to WEB-INF/lib">
+    <mkdir dir="war/WEB-INF/lib" />
+    <copy todir="war/WEB-INF/lib" file="${gwt.sdk}/gwt-servlet.jar" />
+    <copy todir="war/WEB-INF/lib" file="${gwt.sdk}/gwt-servlet-deps.jar" />
+    <!-- Add any additional server libs that need to be copied -->
+     <copy todir="war/WEB-INF/lib" file="lib/activejdbc-1.4.1.jar" />
+     <copy todir="war/WEB-INF/lib" file="lib/javalite-common-1.4.1.jar" />
+     <copy todir="war/WEB-INF/lib" file="lib/commons-fileupload-1.2.2.jar" />
+     <copy todir="war/WEB-INF/lib" file="lib/commons-io-2.4.jar" />
+     <copy todir="war/WEB-INF/lib" file="lib/eventservice-1.2.1.jar" />
+     <copy todir="war/WEB-INF/lib" file="lib/eventservice-rpc-1.2.1.jar" />
+     <copy todir="war/WEB-INF/lib" file="lib/gwteventservice-1.2.1.jar" />
+     <copy todir="war/WEB-INF/lib" file="lib/gwt-dev.jar" />
+     <copy todir="war/WEB-INF/lib" file="lib/gwt-user.jar" />
+     <copy todir="war/WEB-INF/lib" file="lib/gxt-3.0.1.jar" />
+     <copy todir="war/WEB-INF/lib" file="lib/gxt-chart-3.0.1.jar" />
+     <copy todir="war/WEB-INF/lib" file="lib/iText-2.1.7.jar" />
+     <copy todir="war/WEB-INF/lib" file="lib/jbcrypt-0.3m.jar" />
+     <copy todir="war/WEB-INF/lib" file="lib/jsoup-1.6.3.jar" />
+     <copy todir="war/WEB-INF/lib" file="lib/mysql-connector-java-5.0.4.jar" />
+     <copy todir="war/WEB-INF/lib" file="lib/slf4j-api-1.5.10.jar" />
+     <copy todir="war/WEB-INF/lib" file="lib/slf4j-simple-1.5.10.jar" />
+    <!-- active jdbc instrument -->
+    <mkdir dir="war/WEB-INF/build_time_libs" />
+    <copy todir="war/WEB-INF/build_time_libs" file="build_time_libs/activejdbc-instrumentation-1.4.1.jar" />
+    <copy todir="war/WEB-INF/build_time_libs" file="build_time_libs/javassist-3.8.0.GA.jar" />
+  </target>
+
+  <target name="javac" depends="libs" description="Compile java source to bytecode">
+    <mkdir dir="war/WEB-INF/classes"/>
+    <javac srcdir="src" includes="**" encoding="utf-8"
+        destdir="war/WEB-INF/classes"
+        source="1.5" target="1.5" nowarn="true"
+        debug="true" debuglevel="lines,vars,source"
+        fork="true"
+        includeantruntime="false">
+      <classpath refid="project.class.path"/>
+    </javac>
+    <copy todir="war/WEB-INF/classes">
+      <fileset dir="src" excludes="**/*.java"/>
+    </copy>
+  </target>
+
+  <target name="instrument" depends="javac">
+        <java classname="org.javalite.instrumentation.Main">
+            <sysproperty key="outputDirectory" value="${classes}"/>
+            <classpath refid="build_classpath"/>
+        </java>
+    </target>
+
+  <target name="gwtc" depends="instrument" description="GWT compile to JavaScript (production mode)">
+    <java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+      <classpath>
+        <pathelement location="src"/>
+        <path refid="project.class.path"/>
+        <pathelement location="/home/lmeyer/.eclipse/org.eclipse.platform_3.7.0_155965261/plugins/com.google.gwt.eclipse.sdkbundle_2.4.0.v201205091048-rel-r37/gwt-2.4.0/validation-api-1.0.0.GA.jar" />
+        <pathelement location="/home/lmeyer/.eclipse/org.eclipse.platform_3.7.0_155965261/plugins/com.google.gwt.eclipse.sdkbundle_2.4.0.v201205091048-rel-r37/gwt-2.4.0/validation-api-1.0.0.GA-sources.jar" />
+      </classpath>
+      <!-- add jvmarg -Xss16M or similar if you see a StackOverflowError -->
+      <jvmarg value="-Xmx512M"/>
+      <arg line="-war"/>
+      <arg value="war"/>
+      <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
+      <arg line="${gwt.args}"/>
+      <arg value="de.gsv.idm.IdmGsv"/>
+    </java>
+  </target>
+
+  <target name="devmode" depends="instrument" description="Run development mode">
+    <java failonerror="true" fork="true" classname="com.google.gwt.dev.DevMode">
+      <classpath>
+        <pathelement location="src"/>
+        <path refid="project.class.path"/>
+        <pathelement location="/home/lmeyer/.eclipse/org.eclipse.platform_3.7.0_155965261/plugins/com.google.gwt.eclipse.sdkbundle_2.4.0.v201205091048-rel-r37/gwt-2.4.0/validation-api-1.0.0.GA.jar" />
+        <pathelement location="/home/lmeyer/.eclipse/org.eclipse.platform_3.7.0_155965261/plugins/com.google.gwt.eclipse.sdkbundle_2.4.0.v201205091048-rel-r37/gwt-2.4.0/validation-api-1.0.0.GA-sources.jar" />
+      </classpath>
+      <jvmarg value="-Xmx512M"/>
+      <arg value="-startupUrl"/>
+      <arg value="IdmGsv.html"/>
+      <arg line="-war"/>
+      <arg value="war"/>
+      <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
+      <arg line="${gwt.args}"/>
+      <arg value="de.gsv.idm.IdmGsv"/>
+    </java>
+  </target>
+
+<!--
+Test targets suppressed because -junit argument was not specified when running webAppCreator.
+
+  <target name="javac.tests" depends="javac" description="Compiles test code">
+    <javac srcdir="test" includes="**" encoding="utf-8"
+      source="1.5" target="1.5" nowarn="true"
+      destdir="war/WEB-INF/classes"
+      debug="true" debuglevel="lines,vars,source">
+      <classpath location="path_to_the_junit_jar"/>
+      <classpath refid="project.class.path"/>
+    </javac>
+  </target>
+  
+  <target name="test.dev" depends="javac.tests" description="Run development mode tests">
+    <mkdir dir="reports/htmlunit.dev" />
+    <junit fork="yes" printsummary="yes" haltonfailure="yes">
+      <jvmarg line="-Xmx256m" />
+      <sysproperty key="gwt.args" value="-standardsMode -logLevel WARN" />
+      <sysproperty key="java.awt.headless" value="true" />
+      <classpath>
+        <pathelement location="src" />
+        <pathelement location="test" />
+        <path refid="project.class.path" />
+        <pathelement location="/home/lmeyer/.eclipse/org.eclipse.platform_3.7.0_155965261/plugins/com.google.gwt.eclipse.sdkbundle_2.4.0.v201205091048-rel-r37/gwt-2.4.0/validation-api-1.0.0.GA.jar" />
+        <pathelement location="/home/lmeyer/.eclipse/org.eclipse.platform_3.7.0_155965261/plugins/com.google.gwt.eclipse.sdkbundle_2.4.0.v201205091048-rel-r37/gwt-2.4.0/validation-api-1.0.0.GA-sources.jar" />
+        <pathelement location="path_to_the_junit_jar" />
+      </classpath>
+      <batchtest todir="reports/htmlunit.dev" >
+        <fileset dir="test" >
+          <include name="**/*Test.java" />
+        </fileset>
+      </batchtest>
+      <formatter type="plain" />
+      <formatter type="xml" />
+    </junit>
+  </target>
+
+  <target name="test.prod" depends="javac.tests" description="Run production mode tests">
+    <mkdir dir="reports/htmlunit.prod" />
+    <junit fork="yes" printsummary="yes" haltonfailure="yes">
+      <jvmarg line="-Xmx256m" />
+      <sysproperty key="gwt.args" value="-prod -standardsMode -logLevel WARN -standardsMode -out www-test" />
+      <sysproperty key="java.awt.headless" value="true" />
+      <classpath>
+        <pathelement location="src" />
+        <pathelement location="test" />
+        <path refid="project.class.path" />
+        <pathelement location="/home/lmeyer/.eclipse/org.eclipse.platform_3.7.0_155965261/plugins/com.google.gwt.eclipse.sdkbundle_2.4.0.v201205091048-rel-r37/gwt-2.4.0/validation-api-1.0.0.GA.jar" />
+        <pathelement location="/home/lmeyer/.eclipse/org.eclipse.platform_3.7.0_155965261/plugins/com.google.gwt.eclipse.sdkbundle_2.4.0.v201205091048-rel-r37/gwt-2.4.0/validation-api-1.0.0.GA-sources.jar" />
+        <pathelement location="path_to_the_junit_jar" />
+      </classpath>
+      <batchtest todir="reports/htmlunit.prod" >
+        <fileset dir="test" >
+          <include name="**/*Test.java" />
+        </fileset>
+      </batchtest>
+      <formatter type="plain" />
+      <formatter type="xml" />
+    </junit>
+  </target>
+
+  <target name="test" description="Run development and production mode tests">
+    <antcall target="test.dev" />
+    <antcall target="test.prod" />
+  </target>
+-->
+
+  <target name="hosted" depends="devmode" description="Run development mode (NOTE: the 'hosted' target is deprecated)" />
+
+  <target name="build" depends="gwtc" description="Build this project" />
+
+  <target name="war" depends="build" description="Create a war file">
+    <zip destfile="idmGSV.war" basedir="war"/>
+  </target>
+
+  <target name="clean" description="Cleans this project">
+    <delete dir="war/WEB-INF/classes" failonerror="false" />
+    <delete dir="war/IdmGsv" failonerror="false" />
+  </target>
+
+</project>

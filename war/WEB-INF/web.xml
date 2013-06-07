@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee">
+
+  <!-- Servlets -->
+   <servlet>
+    <servlet-name>DomainsServiceImpl</servlet-name>
+    <servlet-class>de.gsv.idm.server.service.DomainsServiceImpl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>DomainsServiceImpl</servlet-name>
+    <url-pattern>/idmGsv/domainsService</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>InformationServiceImpl</servlet-name>
+    <servlet-class>de.gsv.idm.server.service.InformationServiceImpl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>InformationServiceImpl</servlet-name>
+    <url-pattern>/idmGsv/informationService</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>EmployeeServiceImpl</servlet-name>
+    <url-pattern>/idmGsv/employeeService</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>EmployeeServiceImpl</servlet-name>
+   <servlet-class>de.gsv.idm.server.service.EmployeeServiceImpl</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>OccupationServiceImpl</servlet-name>
+   <servlet-class>de.gsv.idm.server.service.OccupationServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>OccupationServiceImpl</servlet-name>
+    <url-pattern>/idmGsv/occupationService</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>AssettypeServiceImpl</servlet-name>
+   <servlet-class>de.gsv.idm.server.service.AssettypeServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>AssettypeServiceImpl</servlet-name>
+    <url-pattern>/idmGsv/assettypeService</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AssetServiceImpl</servlet-name>
+ <servlet-class>de.gsv.idm.server.service.AssetServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>AssetServiceImpl</servlet-name>
+    <url-pattern>/idmGsv/assetService</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AssetLinkServiceImpl</servlet-name>
+    <servlet-class>de.gsv.idm.server.service.AssetLinkServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>AssetLinkServiceImpl</servlet-name>
+    <url-pattern>/idmGsv/assetLinkService</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AssettypeCategoryServiceImpl</servlet-name>
+    <servlet-class>de.gsv.idm.server.service.AssettypeCategoryServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>AssettypeCategoryServiceImpl</servlet-name>
+    <url-pattern>/idmGsv/assettypeCategoryService</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>SecurityzoneServiceImpl</servlet-name>
+   <servlet-class>de.gsv.idm.server.service.SecurityzoneServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>SecurityzoneServiceImpl</servlet-name>
+    <url-pattern>/idmGsv/securityzoneService</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>ChangeEventServiceImpl</servlet-name>
+ <servlet-class>de.gsv.idm.server.service.ChangeEventServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ChangeEventServiceImpl</servlet-name>
+    <url-pattern>/idmGsv/changeEventService</url-pattern>
+  </servlet-mapping>
+  
+      <servlet>
+    <servlet-name>SecurityLevelChangeServiceImpl</servlet-name>
+   <servlet-class>de.gsv.idm.server.service.SecurityLevelChangeServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>SecurityLevelChangeServiceImpl</servlet-name>
+    <url-pattern>/idmGsv/securityLevelChangeService</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ModuleServiceImpl</servlet-name>
+   <servlet-class>de.gsv.idm.server.service.ModuleServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ModuleServiceImpl</servlet-name>
+    <url-pattern>/idmGsv/moduleService</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>ThreatServiceImpl</servlet-name>
+    <servlet-class>de.gsv.idm.server.service.ThreatServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ThreatServiceImpl</servlet-name>
+    <url-pattern>/idmGsv/threatService</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>MeasureServiceImpl</servlet-name>
+    <servlet-class>de.gsv.idm.server.service.MeasureServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>MeasureServiceImpl</servlet-name>
+    <url-pattern>/idmGsv/measureService</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>UserServiceImpl</servlet-name>
+    <servlet-class>de.gsv.idm.server.service.UserServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>UserServiceImpl</servlet-name>
+    <url-pattern>/idmGsv/userService</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>eventServiceImpl</servlet-name>
+  <servlet-class>de.novanic.eventservice.service.EventServiceImpl</servlet-class>
+ </servlet>
+ 
+ <servlet-mapping>
+  <servlet-name>eventServiceImpl</servlet-name>
+  <url-pattern>/idmGsv/gwteventservice</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet>
+  <servlet-name>GSKFileUploadImpl</servlet-name>
+  <servlet-class>de.gsv.idm.server.http.GSKFileUploadImpl</servlet-class>
+ </servlet>
+ 
+ <servlet-mapping>
+  <servlet-name>GSKFileUploadImpl</servlet-name>
+  <url-pattern>/idmGsv/gskFileUpload</url-pattern>
+ </servlet-mapping>
+ 
+  <servlet>
+  <servlet-name>TelefonListUploadImpl</servlet-name>
+  <servlet-class>de.gsv.idm.server.http.TelefonListUploadImpl</servlet-class>
+ </servlet>
+ 
+ <servlet-mapping>
+  <servlet-name>TelefonListUploadImpl</servlet-name>
+  <url-pattern>/idmGsv/telefonListUpload</url-pattern>
+ </servlet-mapping>
+ 
+   <servlet>
+  <servlet-name>RiskCSVProviderImpl</servlet-name>
+  <servlet-class>de.gsv.idm.server.http.RiskCSVProviderImpl</servlet-class>
+ </servlet>
+ 
+ <servlet-mapping>
+  <servlet-name>RiskCSVProviderImpl</servlet-name>
+  <url-pattern>/idmGsv/csvExportProvider</url-pattern>
+ </servlet-mapping>
+ 
+    <servlet>
+  <servlet-name>AssetsMeasuresSummaryProvider</servlet-name>
+  <servlet-class>de.gsv.idm.server.http.AssetsMeasuresSummaryProvider</servlet-class>
+ </servlet>
+ 
+ <servlet-mapping>
+  <servlet-name>AssetsMeasuresSummaryProvider</servlet-name>
+  <url-pattern>/idmGsv/assetsMeasuresSummaryProvider</url-pattern>
+ </servlet-mapping>
+ 
+ 
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>IdmGsv.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>

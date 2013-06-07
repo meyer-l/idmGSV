@@ -1,0 +1,68 @@
+The Simplified BSD License
+
+Copyright (C) 2012-2013  Lars Meyer. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+1. Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY LARS MEYER ``AS IS'' AND ANY EXPRESS OR
+IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL LARS MEYER OR CONTRIBUTORS BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+
+Third Party Content
+--------------------------------------------------------------------------------
+Library: Google Web Toolkit
+License: Apache 2.0
+Location: http://code.google.com/webtoolkit/
+
+Library: activeJDBC
+License: Apache 2.0
+Location: https://code.google.com/p/activejdbc/
+
+Library: Apache Commons FileUpload
+License: Apache 2.0
+Location: https://commons.apache.org/proper/commons-fileupload/
+
+Library: Apache Commons IO
+License: Apache 2.0
+Location: https://commons.apache.org/proper/commons-io/
+
+Library: Sencha GXT 
+License: GPL 3.0
+Location: http://www.sencha.com/products/gxt
+
+Library: gwtEventService
+License: LGPL-Lizenz 3.0
+Location: https://code.google.com/p/gwteventservice/
+
+Library: iText 2.1.7
+License: LGPL-Lizenz 2.0
+Location: http://itextpdf.com/
+
+Library: jsoup: Java HTML Parser
+License: MIT License
+Location: http://jsoup.org/
+
+Library: jBCrypt
+License: ISC-Lizenz
+Location: http://www.mindrot.org/projects/jBCrypt/
+
+Library: Silk Icons 
+License: Creative Commons Attribution 2.5 License
+Location: http://www.famfamfam.com/lab/icons/silk/

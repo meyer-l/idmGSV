@@ -1,0 +1,16 @@
+The WebApp is configured and tested to run with MySQL-Server.
+
+Required enviroment:
+	- MySQL-Database
+	- Webserver
+	- Java
+
+1. Generate MySQL-Database for app
+2. run mysql_migrate.sh username password dbName to generate and migrate tables
+[3a. create war/WEB-INF/db.properties using the db.properties.template file]
+3. update war/WEB-INF/db.properties with db-credentials
+4. run ant war to generate .war file
+5. deploy war-file with Webserver
+5. In standard configuration the applicaiton should be placed at
+path-to-webserver:8080/idmGSV/. You can choose the credentials for the user
+on the first login. Additional users must be added directly in the database
